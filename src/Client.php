@@ -44,64 +44,45 @@
             $this->stylist_id = (int) $new_stylist_id;
         }
 
-        // static function getAll()
-        // {
-        //     $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants;");
-        //     $restaurants = array();
-        //     foreach($returned_restaurants as $restaurant) {
-        //         $restaurant_name = $restaurant['restaurant_name'];
-        //         $id = $restaurant['id'];
-        //         $stylist_id = $restaurant['stylist_id'];
-        //         $new_client = new Restaurant($id, $restaurant_name, $stylist_id);
-        //         array_push($restaurants, $new_client);
-        //     }
-        //     return $restaurants;
-        // }
-        //
-        // function getReviews()
-        // {
-        //     $reviews = array();
-        //
-        //     $returned_reviews = $GLOBALS['DB']->query("SELECT*FROM reviews WHERE restaurant_id={$this->getId()};");
-        //     foreach($returned_reviews as $review)
-        //     {
-        //         $review_content = $review['review'];
-        //         $id = $review['id'];
-        //         $restaurant_id = $review['restaurant_id'];
-        //         $new_review = new Review($id, $review_content, $restaurant_id);
-        //         $review=$new_review->getReview();
-        //         array_push($reviews, $review);
-        //     }
-        //     return $reviews;
-        //
-        // }
-        //
-        // function save()
-        // {
-        //     $statement = $GLOBALS['DB']->query("INSERT INTO restaurants (restaurant_name, stylist_id) VALUES ('{$this->getClient()}', {$this->getCuisineId()}) RETURNING id;");
-        //     $result = $statement->fetch(PDO::FETCH_ASSOC);
-        //     $this->setId($result['id']);
-        // }
-        //
-        // static function deleteAll()
-        // {
-        //     $GLOBALS['DB']->exec("DELETE FROM restaurants *;");
-        // }
-        //
-        // static function find($search_id)
-        // {
-        //     $found_restaurant = null;
-        //     $restaurants = Restaurant::getAll();
-        //     foreach($restaurants as $restaurant) {
-        //         $restaurant_id = $restaurant->getId();
-        //         if ($restaurant_id == $search_id) {
-        //             $found_restaurant = $restaurant;
-        //         }
-        //     }
-        //     return $found_restaurant;
-        // }
+        function save()
+        {
+            $statement = $GLOBALS['DB']->query("INSERT INTO clients (name, stylist_id) VALUES ('{$this->getClient()}', {$this->getStylistId()}) RETURNING id;");
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->setId($result['id']);
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM clients *;");
+        }
+
+        static function getAll()
+        {
+            $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients;");
+            $clients = array();
+            foreach($returned_clients as $client) {
+                $client_name = $client['name'];
+                $id = $client['id'];
+                $stylist_id = $client['stylist_id'];
+                $new_client = new Client($id, $client_name, $stylist_id);
+                array_push($clients, $new_client);
+            }
+            return $clients;
+        }
+
+        static function find($search_id)
+        {
+            $found_client = null;
+            $clients = Client::getAll();
+            foreach($clients as $client) {
+                $client_id = $client->getId();
+                if ($client_id == $search_id) {
+                    $found_client = $client;
+                }
+            }
+            return $found_client;
+        }
 
     }
-
 
 ?>
