@@ -33,17 +33,58 @@
             $this->id = (int) $new_id;
         }
 
-        // static function getAll()
+        function save()
+        {
+            $statement = $GLOBALS['DB']->query("INSERT INTO stylists (stylist) VALUES ('{$this->getStylist()}') RETURNING id;");
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->setId($result['id']);
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stylists *;");
+        }
+
+        static function getAll()
+        {
+            $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
+            $stylists = array();
+            foreach($returned_stylists as $stylist) {
+                $stylist_name = $stylist['stylist'];
+                $id = $stylist['id'];
+                $new_stylist = new Stylist($stylist_name, $id);
+                array_push($stylists, $new_stylist);
+            }
+            return $stylists;
+        }
+
+        static function find ($search_id)
+        {
+            $found_cuisine = null;
+            $stylists = Stylist::getAll();
+            foreach ($stylists as $stylist)
+            {
+                $cuisine_id = $stylist->getId();
+                if ($cuisine_id == $search_id)
+                {
+                    $found_cuisine = $stylist;
+                }
+            }
+            return $found_cuisine;
+
+        }
+
+        function updateStylist($new_stylist)
+        {
+            $GLOBALS['DB']->exec("UPDATE stylists SET stylist = '{$new_stylist}' WHERE id = {$this->getId()};");
+            $this->setStylist($new_stylist);
+        }
+    
+        // function delete()
         // {
-        //     $returned_cuisines = $GLOBALS['DB']->query("SELECT * FROM cuisines;");
-        //     $cuisines = array();
-        //     foreach($returned_cuisines as $cuisine) {
-        //         $stylist = $cuisine['stylist'];
-        //         $id = $cuisine['id'];
-        //         $new_cuisine = new Cuisine($stylist, $id);
-        //         array_push($cuisines, $new_cuisine);
-        //     }
-        //     return $cuisines;
+        //     $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id={$this->getId()};");
+        //     $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_id={$this->getId()};");
+        //
         // }
 
     //     function getRestaurants()
@@ -60,46 +101,6 @@
     //         return $restaurants;
     //     }
     //
-    //     function save()
-    //     {
-    //         $statement = $GLOBALS['DB']->query("INSERT INTO cuisines (stylist) VALUES ('{$this->getStylist()}') RETURNING id;");
-    //         $result = $statement->fetch(PDO::FETCH_ASSOC);
-    //         $this->setId($result['id']);
-    //     }
-    //
-    //     static function deleteAll()
-    //     {
-    //         $GLOBALS['DB']->exec("DELETE FROM cuisines *;");
-    //     }
-    //
-    //     static function find ($search_id)
-    //     {
-    //         $found_cuisine = null;
-    //         $cuisines = Cuisine::getAll();
-    //         foreach ($cuisines as $cuisine)
-    //         {
-    //             $cuisine_id = $cuisine->getId();
-    //             if ($cuisine_id == $search_id)
-    //             {
-    //                 $found_cuisine = $cuisine;
-    //             }
-    //         }
-    //         return $found_cuisine;
-    //
-    //     }
-    //
-    //     function updateType($new_stylist)
-    //     {
-    //         $GLOBALS['DB']->exec("UPDATE cuisines SET stylist = '{$new_stylist}' WHERE id = {$this->getId()};");
-    //         $this->setStylist($new_stylist);
-    //     }
-    //
-    //     function delete()
-    //     {
-    //         $GLOBALS['DB']->exec("DELETE FROM cuisines WHERE id={$this->getId()};");
-    //         $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_id={$this->getId()};");
-    //
-    //     }
     //
     }
 
