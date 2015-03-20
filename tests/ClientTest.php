@@ -219,8 +219,6 @@
             //Assert
             $this->assertEquals($test_client, $result);
         }
-        //not yet test the function update
-        //not yet test delete one client function
-
+        
     }
 ?>

@@ -210,8 +210,6 @@
             //Act
             $result= $test_stylist->getClients();
 
-            var_dump($result);
-
             //Assert
             $this->assertEquals("Obama", $result[0]->getClients());
 
