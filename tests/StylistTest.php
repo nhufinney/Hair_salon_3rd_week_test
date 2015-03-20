@@ -16,7 +16,7 @@
         //     Stylist::deleteAll();
         // }
 
-        function test_getFoodType()
+        function test_getStylist()
         {
             //Arrange
             $stylist = "Paul Mitchell";
@@ -47,36 +47,36 @@
             $this->assertEquals($result, "Tabatha");
         }
 
-        // function test_getId()
-        // {
-        //     //Arrange
-        //     $stylist = "Pizza";
-        //     $id = 1;
-        //     $test_Stylist = new Stylist($stylist, $id);
-        //
-        //     //Act
-        //     $result = $test_Stylist->getId();
-        //
-        //     //Assert
-        //     $this->assertEquals(1, $result);
-        //
-        // }
-        //
-        // function test_setId()
-        // {
-        //     //Arrange
-        //     $stylist = "Mexican";
-        //     $id = null;
-        //     $test_Stylist = new Stylist($stylist, $id);
-        //
-        //     //Act
-        //     $test_Stylist->setId(2);
-        //     $result = $test_Stylist->getId();
-        //
-        //     //Assert
-        //     $this->assertEquals(2, $result);
-        // }
-        //
+        function test_getId()
+        {
+            //Arrange
+            $stylist = "Tabatha Coffey";
+            $id = 3;
+            $test_Stylist = new Stylist($stylist, $id);
+
+            //Act
+            $result = $test_Stylist->getId();
+
+            //Assert
+            $this->assertEquals(3, $result);
+
+        }
+
+        function test_setId()
+        {
+            //Arrange
+            $stylist = "Frederic Fekkai";
+            $id = null;
+            $test_Stylist = new Stylist($stylist, $id);
+
+            //Act
+            $test_Stylist->setId(5);
+            $result = $test_Stylist->getId();
+
+            //Assert
+            $this->assertEquals(5, $result);
+        }
+
         // function test_getAll()
         // {
         //     //Arrange

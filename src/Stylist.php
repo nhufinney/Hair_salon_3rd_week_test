@@ -33,19 +33,19 @@
             $this->id = (int) $new_id;
         }
 
-    //     static function getAll()
-    //     {
-    //         $returned_cuisines = $GLOBALS['DB']->query("SELECT * FROM cuisines;");
-    //         $cuisines = array();
-    //         foreach($returned_cuisines as $cuisine) {
-    //             $stylist = $cuisine['stylist'];
-    //             $id = $cuisine['id'];
-    //             $new_cuisine = new Cuisine($stylist, $id);
-    //             array_push($cuisines, $new_cuisine);
-    //         }
-    //         return $cuisines;
-    //     }
-    //
+        // static function getAll()
+        // {
+        //     $returned_cuisines = $GLOBALS['DB']->query("SELECT * FROM cuisines;");
+        //     $cuisines = array();
+        //     foreach($returned_cuisines as $cuisine) {
+        //         $stylist = $cuisine['stylist'];
+        //         $id = $cuisine['id'];
+        //         $new_cuisine = new Cuisine($stylist, $id);
+        //         array_push($cuisines, $new_cuisine);
+        //     }
+        //     return $cuisines;
+        // }
+
     //     function getRestaurants()
     //     {
     //         $restaurants = array();
@@ -102,5 +102,5 @@
     //     }
     //
     }
-    
+
 ?>
