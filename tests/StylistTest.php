@@ -106,7 +106,6 @@
 
             //Act
             $result = Stylist::getAll();
-            var_dump($result);
 
             //Assert
             $this->assertEquals($test_Stylist, $result[0]);
@@ -131,10 +130,6 @@
             $this->assertEquals([$test_Stylist, $test_Stylist2], $result);
         }
 
-
-
-
-
         function test_find()
         {
             //Arrange
@@ -154,24 +149,24 @@
             $this->assertEquals($test_Stylist, $result);
         }
 
-        // function test_updateType()
-        // {
-        //     //Arrange
-        //     $stylist = "Japanese";
-        //     $id = 1;
-        //     $test_cuisine = new Stylist ($stylist, $id);
-        //     $test_cuisine->save();
-        //
-        //     $new_food_type = "Chinese";
-        //
-        //     //Act
-        //     $test_cuisine->updateType($new_food_type);
-        //
-        //     //Assert
-        //     $this->assertEquals("Chinese", $test_cuisine->getStylist());
-        //
-        // }
-        //
+        function test_updateStylist()
+        {
+            //Arrange
+            $stylist = "John";
+            $id = 1;
+            $test_stylist = new Stylist ($stylist, $id);
+            $test_stylist->save();
+
+            $new_stylist = "Diana";
+
+            //Act
+            $test_stylist->updateStylist($new_stylist);
+
+            //Assert
+            $this->assertEquals("Diana", $test_stylist->getStylist());
+
+        }
+
         // function testDeleteCusine()
         // {
         //     //Arrange
