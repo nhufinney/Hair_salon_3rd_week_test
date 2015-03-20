@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<div class ="container">
+    <h1>Update information for the client: {{ client.getClient }} </h1>
+
+    <form action="/client/{{ client.getId }}" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <br>
+        <br>
+        <label for="client">Rename the client:</label>
+        <input type="text" name="client" id="client">
+        <button type="submit">Update</button>
+
+    </form>
+    <br>
+    <br>
+    <form action="/client/{{ client.getId }}" method="post">
+        <input name="_method" type="hidden" value="delete">
+        <button type="submit">Delete this client</button>
+    </form>
+    <br><br>
+    <p><a href="/">Return home</a></p>
+    <br>
+
+</div>

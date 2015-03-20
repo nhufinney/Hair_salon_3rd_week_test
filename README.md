@@ -31,8 +31,3 @@ CREATE DATABASE
 hair_salon=# \c hair_salon_test
 You are now connected to database "hair_salon_test" as user "Guest".
 hair_salon_test=#
-
-
-Notes:
-I have created the Client table then realized the name of column "name" should be changed into "client_name" but do not know how to change column name. But it's not too bad.
-Lessons: before creating a new table, should spend more time to consider names of columns to be used to make sure that they are clear and easy to understand and recognize later on.

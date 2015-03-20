@@ -1,0 +1,34 @@
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<title>Stylist</title>
+
+
+
+<div class="container">
+    <h1>STYLIST {{ stylist.getStylist }}</h1>
+        {% if clients is not empty %}
+            <p>Here are the list of clients of this stylist: </p>
+            <ul>
+                {% for client in clients %}
+                    <li><a href="/client/{{ client.getId }}/edit">{{client.getClient}} </a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <br>
+        <br>
+
+        <form action="/relevant_clients" method="post">
+        <input id="stylist_id" name="stylist_id" type="hidden" value="{{ stylist.getId() }}">
+
+        <label for='client'>Add a new client for this Stylist</label>
+        <input id='client' name='client' type='text'>
+
+        <button type="submit" class="btn btn-danger">Add</button>
+        </form>
+        <br>
+        <br>
+        <p><a href="/stylist/{{ stylist.getId }}/edit">Edit this Stylist</a></p>
+        <br>
+
+        <p><a href="/">Return home</a></p>
+</div>

@@ -83,6 +83,16 @@
             return $found_client;
         }
 
+        function updateClient($updated_client)
+        {
+            $GLOBALS['DB']->exec("UPDATE clients SET name = '{$updated_client}' WHERE id = {$this->getId()};");
+            $this->setClient($updated_client);
+        }
+
+        function deleteOneClient()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM clients WHERE id={$this->getId()};");
+        }
     }
 
 ?>

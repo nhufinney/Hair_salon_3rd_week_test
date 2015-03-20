@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <div class="container">
         <h1>STYLIST!</h1>
-        <form action="/stylists" method="post">
+        <form action="/stylist" method="post">
             <div class="form-group">
                 <label for="stylist">Who stylist would you like to add?</label>
                 <input type="text" name="stylist" id="stylist" class="form-control">
@@ -13,8 +13,15 @@
             <p>Select a stylist:</p>
             <ul>
                 {% for stylist in stylists %}
-                    <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getStylist }}</a></li>
+                    <li><a href="/stylist/{{ stylist.getId }}">{{ stylist.getStylist }}</a></li>
                 {% endfor %}
             </ul>
         {% endif %}
-    </div>
+        <br><br>
+        {% if stylists is not empty %}
+            <form action="/deleteAll" method="post">
+                <input name="_method" type="hidden" value="delete">
+                <button type="submit">Delete all stylists</button>
+            </form>
+        {% endif %}
+        </div>

@@ -181,11 +181,11 @@
 
             $client = "Obama";
             $stylist_id = $test_stylist->getId();
-            $test_client = new Client($client, $id, $stylist_id);
+            $test_client = new Client($id, $client, $stylist_id);
             $test_client->save();
 
             $client_name2 = "Washington";
-            $test_client2 = new Client($client_name2, $id, $stylist_id);
+            $test_client2 = new Client($id, $client_name2, $stylist_id);
             $test_client2->save();
 
             //Act
@@ -219,6 +219,8 @@
             //Assert
             $this->assertEquals($test_client, $result);
         }
+        //not yet test the function update
+        //not yet test delete one client function
 
     }
 ?>

@@ -6,6 +6,8 @@
     */
 
     require_once "src/Stylist.php";
+    require_once "src/Client.php";
+
 
     $DB = new PDO('pgsql:host=localhost;dbname=hair_salon_test');
 
@@ -130,6 +132,26 @@
             $this->assertEquals([$test_Stylist, $test_Stylist2], $result);
         }
 
+        function testDeleteFunction()
+        {
+            //Arrange
+            $stylist = "Davison";
+            $id = 1;
+            $test_stylist = new Stylist($stylist, $id);
+            $test_stylist->save();
+
+            $stylist2 = "Me";
+            $id2=2;
+            $test_stylist2 = new Stylist($stylist2, $id2);
+            $test_stylist2->save();
+
+            //Act
+            $test_stylist->delete();
+
+            //Assert
+            $this->assertEquals([$test_stylist2], Stylist::getAll());
+        }
+
         function test_find()
         {
             //Arrange
@@ -167,45 +189,35 @@
 
         }
 
-        // function testDeleteCusine()
-        // {
-        //     //Arrange
-        //     $cuisine = "Prime Steak";
-        //     $id = 1;
-        //     $test_cuisine = new Stylist($cuisine, $id);
-        //     $test_cuisine->save();
-        //
-        //     $cuisine2 = "Lobster";
-        //     $id2=2;
-        //     $test_cuisine2 = new Stylist($cuisine2, $id2);
-        //     $test_cuisine2->save();
-        //
-        //     //Act
-        //     $test_cuisine->delete();
-        //
-        //     //Assert
-        //     $this->assertEquals([$test_cuisine2], Stylist::getAll());
-        // }
-        //
-        // function testDeleteStylistTypeFromRestaurant()
-        // {
-        //     //Arrang
-        //     $cuisine = "Sea Crab";
-        //     $id = null;
-        //     $test_cuisine = new Stylist($cuisine, $id);
-        //     $test_cuisine->save();
-        //
-        //     $restaurant = "Mom Kitchen";
-        //     $cuisine_id = $test_cuisine->getId();
-        //     $test_restaurant = new Restaurant($id, $restaurant, $cuisine_id);
-        //     $test_restaurant->save();
-        //
-        //     //Act
-        //     $test_cuisine->delete();
-        //
-        //     //Assert
-        //     $this->assertEquals([], Restaurant::getAll());
-        // }
+        function test_getClients()
+        {
+            //Arrange
+            $stylist = "John";
+            $id = 10;
+            $test_stylist = new Stylist ($stylist, $id);
+            $test_stylist->save();
+
+            $test_stylist_id = $test_stylist->getId();
+
+            $client = "Obama";
+            $test_client = new Client($id, $client, $test_stylist_id);
+            $test_client->save();
+
+            $client_name2 = "Washington";
+            $test_client2 = new Client($id, $client_name2, $test_stylist_id);
+            $test_client2->save();
+
+            //Act
+            $result= $test_stylist->getClients();
+
+            var_dump($result);
+
+            //Assert
+            $this->assertEquals("Obama", $result[0]->getClients());
+
+        }
+
+
 
     }
 
