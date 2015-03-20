@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<div class="container">
+        <h1>STYLIST!</h1>
+        <form action="/stylists" method="post">
+            <div class="form-group">
+                <label for="stylist">Who stylist would you like to add?</label>
+                <input type="text" name="stylist" id="stylist" class="form-control">
+            </div>
+            <button type="submit">Add A New Stylist</button>
+        </form>
+
+        {% if stylists is not empty %}
+            <p>Select a stylist:</p>
+            <ul>
+                {% for stylist in stylists %}
+                    <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getStylist }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
